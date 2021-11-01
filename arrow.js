@@ -15,20 +15,22 @@ class Arrow {
     }
     
     //create a shoot function
-    shoot(){
-      //archerAngle += 35;
-      this.velocity = p5.Vector.fromAngle(3.14/180);
+    shoot(archerAngle){
+      archerAngle += 35;
+      this.velocity = p5.Vector.fromAngle(archerAngle*(3.14/180));
       console.log(this.body);
   
-      this.velocity.mult(0.1);
+      this.velocity.mult(0.5);
+
   
       Matter.Body.setVelocity(this.body,{
         x:this.velocity.x * (180/3.14),
         y:this.velocity.y * (180/3.14)
       })
       console.log(this.velocity);
-  
+
       Matter.Body.setStatic(this.body,false);
+  
     }
   
     display() {

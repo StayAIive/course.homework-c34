@@ -20,7 +20,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1600, 800);
+  createCanvas(1584, 792);
 
   engine = Engine.create();
   world = engine.world;
@@ -61,7 +61,8 @@ function draw() {
 
 function keyPressed(){
   if (keyCode === 32) {
-    arrow.shoot();
+    console.log(bow.body);
+    arrow.shoot(bow.body.angles);
   }
 }
 
