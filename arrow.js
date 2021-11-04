@@ -3,37 +3,31 @@ class Arrow {
     constructor(x, y, width, height) {
       var options = {
         isStatic: true,
-        //density: 0.1
-        friction:0.5
+        density: 0.1
       };
       this.width = width;
       this.height = height;
       this.body = Bodies.rectangle(x, y, this.width, this.height, options);
       this.image = loadImage("./Player/arrow.png");
       this.velocity = 0;
+      //this.body.depth = invisibleWall.depth-1
       World.add(world, this.body);
     }
     
     //create a shoot function
-    shoot(archerAngle){
-      archerAngle += 35;
-      this.velocity = p5.Vector.fromAngle(archerAngle*(3.14/180));
-      console.log(this.body);
-  
-      this.velocity.mult(0.5);
-
-  
-      Matter.Body.setVelocity(this.body,{
-        x:this.velocity.x * (180/3.14),
-        y:this.velocity.y * (180/3.14)
-      })
-      console.log(this.velocity);
-
-      Matter.Body.setStatic(this.body,false);
-  
+    shoot(){
+      var newAngle = bow.body.angle+10;
+      newAngle = newAngle *(3.14/180);
+      var velocity = p5.Vector.fromAngle(newAngle);
+      velocity.mult(2.5);
+      Matter.Body.setStatic(this.body, false);
+      Matter.Body.setVelocity(this.body, {
+        x: velocity.x *(180/3.14), 
+        y: velocity.y * (180/3.14)});
     }
   
     display() {
+      
     
       var pos = this.body.position;
       this.archerAngle = bow.body.angle;
@@ -45,5 +39,14 @@ class Arrow {
       imageMode(CENTER);
       image(this.image, 0, 0, this.width, this.height);
       pop();
+    }
+
+    touch(){
+      //console.log(this.body.position.y);
+      if(this.body.position.y < 0){
+        //Matter.World.remove(world,this.body);
+        //delete this.body;
+        //console.log("yes");
+      }
     }
   }

@@ -12,22 +12,20 @@ class Bow {
 
 
         World.add(world, this.body);
-        Matter.Body.setAngle(this.body,-30);
+        Matter.Body.setAngle(this.body,-40);
     }
 
     display() {
         var pos = this.body.position;
         var angle = this.body.angle;
 
-        console.log(angle);
-
-        if (keyIsDown(DOWN_ARROW) && angle < -30) {
+        if (keyIsDown(DOWN_ARROW) && angle < -40) {
             angle += 1;
             this.body.angle = angle;
             Matter.Body.setAngle(this.body, angle);
         }
 
-        if (keyIsDown(UP_ARROW) && angle > -70) {
+        if (keyIsDown(UP_ARROW) && angle > -80) {
             angle -= 1;
             this.body.angle = angle;
             Matter.Body.setAngle(this.body, angle);
